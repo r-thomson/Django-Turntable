@@ -7,11 +7,15 @@ authors = [
     { name = "Ryan Thomson" },
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "django>=6.0.0",
+]
 
 [dependency-groups]
 dev = [
-    "ruff>=0.15.0",
+    "debugpy==1.8.20",
+    "django-stubs==5.2.9",
+    "ruff==0.15.0",
 ]
 
 [build-system]
@@ -24,3 +28,6 @@ quote-style = "single"
 
 [tool.ruff.lint]
 extend-select = ["B", "I", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
