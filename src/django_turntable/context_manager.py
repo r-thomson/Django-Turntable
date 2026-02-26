@@ -34,3 +34,6 @@ def inspect_queries(connection: BaseDatabaseWrapper | None = None):
     finally:
         if n:
             logger.info(f'{n} queries executed')
+
+
+__all__ = ['inspect_queries']

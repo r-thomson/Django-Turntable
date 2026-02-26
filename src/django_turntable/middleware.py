@@ -17,3 +17,6 @@ class TurntableMiddleware:
     def __call__(self, request: HttpRequest) -> HttpResponse:
         with inspect_queries():
             return self.get_response(request)
+
+
+__all__ = ['TurntableMiddleware']
