@@ -15,12 +15,17 @@ dependencies = [
 dev = [
     "debugpy==1.8.20",
     "django-stubs==5.2.9",
+    "pyright==1.1.408",
     "ruff==0.15.0",
 ]
 
 [build-system]
 requires = ["uv_build>=0.9.18,<0.10.0"]
 build-backend = "uv_build"
+
+[tool.pyright]
+include = ["src", "tests"]
+strict = ["src"]
 
 [tool.ruff.format]
 line-ending = "lf"

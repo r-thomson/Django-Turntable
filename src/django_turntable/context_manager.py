@@ -17,12 +17,12 @@ def inspect_queries(connection: BaseDatabaseWrapper | None = None):
     n = 0
 
     def wrapper(
-        execute: Callable,
+        execute: Callable[[str, Any, bool, dict[str, Any]], Any],
         sql: str,
         params: Any,
         many: bool,
         context: dict[str, Any],
-    ):
+    ) -> Any:
         nonlocal n
         n += 1
 
