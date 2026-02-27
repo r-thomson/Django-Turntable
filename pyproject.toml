@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Ryan Thomson" },
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
     "django>=6.0.0",
 ]
