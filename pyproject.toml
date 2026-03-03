@@ -1,15 +1,28 @@
 [project]
 name = "django-turntable"
 version = "0.1.0"
-description = ""
-readme = "README.md"
-authors = [
-    { name = "Ryan Thomson" },
-]
-requires-python = ">=3.13"
 dependencies = [
     "django>=6.0.0",
 ]
+requires-python = ">=3.13"
+authors = [
+    { name = "Ryan Thomson" },
+]
+description = "A lightweight Django library that helps you optimize your app's database access."
+readme = "README.md"
+license = "MIT"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+]
+
+[project.urls]
+homepage = "https://github.com/r-thomson/Django-Turntable"
+source = "https://github.com/r-thomson/Django-Turntable.git"
+releasenotes = "https://github.com/r-thomson/Django-Turntable/releases"
+issues = "https://github.com/r-thomson/Django-Turntable/issues"
 
 [dependency-groups]
 dev = [
