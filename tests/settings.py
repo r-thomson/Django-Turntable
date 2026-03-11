@@ -1,6 +1,6 @@
 SECRET_KEY = 'test_secret_key'
 
-DEBUG = True
+DEBUG = True  # doesn't really matter, you need to pass --debug-mode
 
 INSTALLED_APPS = [
     'tests',
