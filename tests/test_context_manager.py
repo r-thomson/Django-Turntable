@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from django_turntable import inspect_queries
 
-from .models import Album, Artist
+from .models import Album, Artist, Song
 
 
 class TestInspectQueries(TestCase):
@@ -31,3 +31,15 @@ class TestInspectQueries(TestCase):
         with self.assertNoLogs('django_turntable', level='INFO'):
             with inspect_queries():
                 pass
+
+    def test_warns_for_repeated_queries(self):
+        with self.assertLogs('django_turntable', level='WARNING') as logs:
+            with inspect_queries():
+                for i in range(10):
+                    list(Song.objects.filter(id=i))
+
+        self.assertEqual(len(logs.output), 1)
+        self.assertRegex(
+            logs.output[0],
+            r'Repeating query \(10x\): SELECT .+ FROM "tests_song" WHERE "tests_song"."id" = %s$',
+        )

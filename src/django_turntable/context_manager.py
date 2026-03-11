@@ -1,5 +1,5 @@
 import logging
-from collections import deque
+from collections import Counter, deque
 from collections.abc import Callable
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -50,6 +50,11 @@ def inspect_queries(connection: BaseDatabaseWrapper | None = None):
 
         if n:
             logger.info(f'{n} queries executed ({t * 1000:.3f}ms)')
+
+        counter = Counter(q.sql for q in queries)
+        for sql, count in counter.items():
+            if count > 3:
+                logger.warning(f'Repeating query ({count}x): {sql}')
 
 
 __all__ = ['inspect_queries']

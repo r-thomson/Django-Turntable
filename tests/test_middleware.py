@@ -57,8 +57,11 @@ class TestTurntableMiddleware(TestCase):
             response = self.client.get('/albums/')
             self.assertEqual(response.status_code, 200)
 
-        self.assertEqual(len(logs.output), 1)
+        self.assertEqual(len(logs.output), 2)
         self.assertRegex(logs.output[0], r'7 queries executed \(\d+\.\d+ms\)')
+        self.assertRegex(
+            logs.output[1], r'Repeating query \(5x\): SELECT .+ FROM "tests_artist"'
+        )
 
     def test_does_not_log_if_no_queries(self):
         with self.assertNoLogs('django_turntable', level='INFO'):
