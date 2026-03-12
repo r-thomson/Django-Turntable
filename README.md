@@ -6,9 +6,9 @@ This is a lightweight Django library for helping developers optimize their app's
 
 **In the future**, it will analyze your SQL queries to identify repeating queries.
 
-## Usage
+# Documentation
 
-### As a Context Manager
+## Context Manager
 
 ```py
 from django_turntable import inspect_queries
@@ -17,7 +17,9 @@ with inspect_queries():
     ...
 ```
 
-### As a Decorator
+## Decorator
+
+Works identically to the context manager.
 
 ```py
 from django_turntable import inspect_queries
@@ -27,13 +29,20 @@ def my_function():
     ...
 ```
 
-### As Middleware
+## Middleware
+
+Any middleware placed *below* `TurntableMiddleware` will have its query usage monitored as well.
 
 ```py
-# settings.py
-
 MIDDLEWARE = [
-    ...,
+    # ...
     'django_turntable.TurntableMiddleware',
+    # ...
 ]
 ```
+
+Because this library is intended as a development tool, the middleware will automatically remove itself if the `DEBUG` setting is set to `False`.
+
+## Logging
+
+All output is sent to the `django_turntable` logger. In your logging configuration, you should set this logger's level to `INFO` if you want to see all query usage, or `WARNING` if you just want to see potential problems.
