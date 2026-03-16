@@ -21,6 +21,16 @@ class QueryRecord:
 
 @contextmanager
 def inspect_queries(connection: BaseDatabaseWrapper | None = None):
+    """
+    Profile and analyse Django database queries within a block of code.
+
+    This function may be used as a context manager or a function decorator.
+    Output is logged to the `django_turntable` logger.
+
+    Args:
+        connection: The database connection to use. If `None` (the default),
+            the default Django database is used.
+    """
     if connection is None:
         connection = django.db.connection
 
